@@ -1,0 +1,25 @@
+name: HTML Linting CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  lint-html:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the code from the repository
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js environment
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '14'
+
+      # Step 3: Run HTMLHint directly without installing dependencies
+      - name: Run HTML Lint
+        run: npx htmlhint "**/*.html"
